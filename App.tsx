@@ -1,13 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import BottomTabNavigator from "./src/navigation/BottomNavigation";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+          <Stack.Navigator initialRouteName={"Main"}>
+              {/*<Stack.Screen*/}
+              {/*    name="Start"*/}
+              {/*    component={StartPage}*/}
+              {/*    options={{ headerShown: false }}*/}
+              {/*/>*/}
+              {/*<Stack.Screen*/}
+              {/*    name="Login"*/}
+              {/*    component={LoginPage}*/}
+              {/*    options={{ headerShown: false }}*/}
+              {/*/>*/}
+              {/*<Stack.Screen*/}
+              {/*    name="Register"*/}
+              {/*    component={RegisterPage}*/}
+              {/*    options={{ headerShown: false }}*/}
+              {/*/>*/}
+              {/*<Stack.Screen*/}
+              {/*    name="Developers"*/}
+              {/*    component={Developers}*/}
+              {/*    options={{ headerShown: false }}*/}
+              {/*/>*/}
+              <Stack.Screen
+                  name="Main"
+                  component={BottomTabNavigator}
+                  options={{ headerShown: false }}
+              />
+          </Stack.Navigator>
+      </NavigationContainer>
   );
+}
+
+const handleClick = () =>{
+  alert("Button Clicked!");
 }
 
 const styles = StyleSheet.create({
