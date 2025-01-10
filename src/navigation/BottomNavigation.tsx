@@ -51,24 +51,23 @@ const BottomTabNavigator: React.FC = () => {
                     let iconName: keyof typeof Ionicons.glyphMap = "home";
                     if (route.name === 'Home') {
                         iconName = focused ? "home" : "home-outline";
-                    } else if (route.name === 'Profile') {
-                        iconName = focused ? "person" : "person-outline";
+                    } else if (route.name === 'History') {
+                        iconName = focused ? "arrow-forward-outline" : "arrow-forward";
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
                 tabBarStyle: {
                     height: 70,
                     paddingBottom: 12,
-                    elevation:15,
-                    shadowColor: colors.white,
+                    elevation:20,
+                    shadowColor: colors.black,
                     backgroundColor: colors.secondary,
-                    borderTopWidth: 0,
                 },
                 tabBarActiveTintColor: colors.white,
-                tabBarInactiveTintColor: 'gray',
+                tabBarInactiveTintColor: colors.gray,
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    fontFamily: 'Spartan-SemiBold',
+                    fontWeight: "bold",
                 },
             })}
         >
@@ -90,7 +89,7 @@ const BottomTabNavigator: React.FC = () => {
                 }}
             />
             <Tab.Screen
-                name="Profile"
+                name="History"
                 component={History}
                 options={{
                     headerShown: false,
