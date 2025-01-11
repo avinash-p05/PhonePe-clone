@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from "./MiddleSection.styles";
+import colors from "../../styles/colors";
 
 interface MenuItemProps {
     icon: keyof typeof Feather.glyphMap;
@@ -59,7 +60,7 @@ const QuickAction: React.FC<QuickActionProps> = ({
                                                      onPress
                                                  }) => (
     <TouchableOpacity style={styles.quickActionItem} onPress={onPress}>
-        <Feather name={icon} size={20} color="#5C338E" />
+        <Feather name={icon} size={20} color= {colors.primary} />
         {badge && (
             <View style={styles.rewardBadge}>
                 <Text style={styles.rewardBadgeText}>{badge}</Text>
@@ -89,7 +90,7 @@ const MiddleSection: React.FC<MiddleSectionProps> = ({
                 <Text style={styles.mainTitle}>Transfer Money</Text>
                 <View style={styles.transferGrid}>
                     <MenuItem
-                        icon="smartphone"
+                        icon="user"
                         title="To Mobile Number"
                         onPress={onTransferPress}
                     />

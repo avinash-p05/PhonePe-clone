@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "PhonePe",
-    "slug": "PhonePe",
+    "slug": "phonepe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/phonepe-icon.png",
@@ -20,10 +20,17 @@
         "foregroundImage": "./assets/phonepe-icon.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.avinashhh5.PhonePe"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bc1453a2-8af4-4dd2-97a1-75a8e9e9f2e0"
+      }
+    },
+    "owner": "avinashhh.5"
   }
 }

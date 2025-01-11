@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     },
     overlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: 'rgba(0,0,0,0.63)',
         alignItems: 'center',
         justifyContent: 'center',
     },
     scannerContainer: {
-        backgroundColor: 'rgba(255,255,255,0.11)',
+        backgroundColor: 'rgba(255,255,255,0.04)',
         width: scannerWidth,
         height: scannerHeight,
         position: 'relative',

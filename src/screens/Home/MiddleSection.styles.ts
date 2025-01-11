@@ -8,11 +8,12 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background,
     },
     section: {
-        margin:6,
+        elevation:10,
+        margin:4,
         borderRadius: 16,
         backgroundColor: colors.secondary,
-        marginBottom: 8,
-        padding: 16,
+        marginBottom: 4,
+        padding: 12,
     },
     section2: {
         display: 'flex',
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     menuItemText: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '500',
         textAlign: 'center',
         color: colors.white,
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 16,
+        marginBottom: 12,
     },
     sectionTitle: {
         fontSize: 16,
@@ -75,19 +76,19 @@ const styles = StyleSheet.create({
     upiSection: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        marginBottom: 16,
+        justifyContent: 'space-around',
+        marginBottom: 6,
         gap: 8,
     },
     upiLiteButton: {
-        maxWidth: '48%',
         backgroundColor: colors.secondary,
         borderWidth:2,
         borderColor:colors.gray,
-        padding: 12,
+        padding: 8,
         borderRadius: 8,
     },
     upiLiteText: {
+        fontSize:12,
         color: colors.white,
         fontWeight: '500',
     },
@@ -98,13 +99,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 12,
+        padding: 8,
         borderRadius: 8,
     },
     upiIdText: {
+        fontWeight: '500',
+        fontSize:12,
         color: colors.white,
     },
     quickActions: {
+        elevation:10,
         backgroundColor: colors.background,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -114,8 +118,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.secondary,
-        borderWidth:2,
-        borderColor:colors.gray,
+
         padding: 8,
         borderRadius: 8,
         flex: 1,
@@ -128,6 +131,7 @@ const styles = StyleSheet.create({
         marginLeft: 4,
     },
     gridContainer: {
+        elevation:10,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',

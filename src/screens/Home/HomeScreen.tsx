@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from "react-native";
 import Button from '../../components/MainButton';
-import styles from './Home.styles';
+import styles from './Header.styles';
 import {Feather} from "@expo/vector-icons";
 import MiddleSection from "./MiddleSection";
 
