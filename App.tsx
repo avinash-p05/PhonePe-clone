@@ -3,18 +3,19 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabNavigator from "./src/navigation/BottomNavigation";
+import LoginMain from "./src/screens/Login/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
       <NavigationContainer>
-          <Stack.Navigator initialRouteName={"Main"}>
-              {/*<Stack.Screen*/}
-              {/*    name="Start"*/}
-              {/*    component={StartPage}*/}
-              {/*    options={{ headerShown: false }}*/}
-              {/*/>*/}
+          <Stack.Navigator initialRouteName={"Login"}>
+              <Stack.Screen
+                  name="Login"
+                  component={LoginMain}
+                  options={{ headerShown: false }}
+              />
               {/*<Stack.Screen*/}
               {/*    name="Login"*/}
               {/*    component={LoginPage}*/}

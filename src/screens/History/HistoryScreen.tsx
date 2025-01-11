@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import { Feather } from '@expo/vector-icons';
 import styles from "./History.styles";
 import colors from "../../styles/colors";
+import Header from "../../components/Header";
 
 // Types for transaction data
 interface Transaction {
@@ -139,6 +140,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({
 
     return (
         <View style={styles.container}>
+            <Header/>
             <View style={styles.header}>
                 <Text style={styles.title}>Transaction History</Text>
                 <TouchableOpacity

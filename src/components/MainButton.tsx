@@ -19,7 +19,7 @@ const Button: React.FC<BtnProps> = ({ title, onPress, style, textStyle, disabled
         style,
         disabled && styles.disabledButton, // Add disabled styles if button is disabled
       ]}
-      activeOpacity={disabled ? 1 : 0.7} // Prevent press feedback when disabled
+       // Prevent press feedback when disabled
       disabled={disabled}
     >
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
@@ -30,19 +30,19 @@ const Button: React.FC<BtnProps> = ({ title, onPress, style, textStyle, disabled
 const styles = StyleSheet.create({
   button: {
     margin:20,
-    width:"80%",
+    width:"100%",
     backgroundColor: colors.primary,
-    padding: 12,
+    padding: 16,
     borderRadius: 8,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
   },
   disabledButton: {
-    backgroundColor: "#ccc",
+    backgroundColor: colors.secondary2,
   },
 });
 

@@ -1,7 +1,8 @@
 const colors = {
-    primary: '#60249f',
-    secondary: '#20182a',
-    background: '#0e041b',
+    primary: '#3f1e64',
+    secondary: '#21182b',
+    secondary2: '#453757',
+    background: '#0e051a',
     white: '#FFFFFF',
     black: '#000000',
     gray: '#808080',
