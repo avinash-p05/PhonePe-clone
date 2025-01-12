@@ -10,9 +10,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: colors.primary,
-        paddingHorizontal: 16,
-        paddingBottom: 16,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        padding: 12,
     },
     leftSection: {
         flexDirection: 'row',

@@ -1,5 +1,5 @@
+import {StyleSheet} from "react-native";
 import colors from "../../styles/colors";
-import {Platform, StatusBar, StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -8,10 +8,22 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     header: {
-        display:"flex",
         flexDirection: 'row',
-        justifyContent:"flex-end",
+        alignItems: 'center',
+        justifyContent: 'space-between',
         marginBottom: 20,
+    },
+    backButton: {
+        padding: 8,
+    },
+    backButtonText: {
+        color: 'white',
+        fontSize: 24,
+    },
+    headerTitle: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: '600',
     },
     helpButton: {
         width: 30,
@@ -28,15 +40,16 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 20,
+        marginVertical: 20,
     },
     logo: {
+        alignSelf: 'flex-start',
         width: 60,
         height: 60,
         borderRadius: 30,
-        backgroundColor: '#5C35CA',
-        alignSelf:"flex-start"
+        backgroundColor: colors.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     logoText: {
         color: 'white',
@@ -49,40 +62,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8,
     },
-    title2: {
-        fontSize: 22,
-        color: 'white',
-        fontWeight: 'bold',
-        marginBottom: 16,
-    },
     subtitle: {
         fontSize: 16,
         color: '#9995AD',
-        marginBottom: 16,
+        marginBottom: 30,
     },
     inputContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
         borderWidth: 1,
         borderColor: colors.primary,
         borderRadius: 8,
-        overflow: 'hidden',
         marginBottom: 20,
-    },
-    countryCode: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 12,
-        backgroundColor: colors.secondary2,
-    },
-    flag: {
-        width: 28,
-        height: 18,
-        marginRight: 8,
-    },
-    countryCodeText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: '600',
     },
     input: {
         flex: 1,
@@ -91,26 +82,32 @@ const styles = StyleSheet.create({
         padding: 12,
         backgroundColor: colors.secondary2,
     },
-    proceedButton: {
+    eyeIcon: {
+        padding: 12,
         backgroundColor: colors.secondary2,
-        padding: 16,
-        borderRadius: 8,
+    },
+    dotsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 30,
+    },
+    dot: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: colors.secondary,
+        marginHorizontal: 8,
+    },
+    dotFilled: {
+        backgroundColor: colors.primary
+    },
+    forgotContainer: {
+        marginTop: 'auto',
         alignItems: 'center',
-        marginBottom: 20,
     },
-    termsContainer: {
-        position: 'absolute',
-        bottom: 40,
-        left: 20,
-        right: 20,
-    },
-    termsText: {
-        color: '#9995AD',
-        textAlign: 'center',
-        fontSize: 14,
-    },
-    termsLink: {
+    forgotText: {
         color: colors.primary,
+        fontSize: 14,
     },
 });
 

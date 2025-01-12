@@ -29,7 +29,7 @@ const Button: React.FC<BtnProps> = ({ title, onPress, style, textStyle, disabled
 
 const styles = StyleSheet.create({
   button: {
-    margin:20,
+    marginTop:16,
     width:"100%",
     backgroundColor: colors.primary,
     padding: 16,

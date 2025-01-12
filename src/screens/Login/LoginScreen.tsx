@@ -1,31 +1,98 @@
-import React from "react";
-import {Image, Text, TextInput, TouchableOpacity, View} from "react-native";
-import styles from "./LoginScreen.styles"
+import React, { useState } from 'react';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    Platform,
+    Image, TextInput,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import styles from "./LoginScreen.styles";
 import MainButton from "../../components/MainButton";
 
-export default function LoginMain() {
+// Define the navigation stack param list
+type RootStackParamList = {
+    Login: undefined;
+    OTPVerification: { phoneNumber: string };
+};
 
-    const [mobileNumber, setMobileNumber] = React.useState("");
-    const [isProcessed, setIsProcessed] = React.useState(false);
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
+
+interface LoginScreenProps {
+    onProceed: (phoneNumber: string) => any;
+}
+
+const LoginMain: React.FC<LoginScreenProps> = ({ onProceed }) => {
+    const [phoneNumber, setPhoneNumber] = useState<string>('');
+    const navigation = useNavigation<NavigationProp>();
 
     const handleProceed = () => {
+        if (phoneNumber.length === 10) {
+            onProceed(phoneNumber);
+            // Navigate to OTP verification screen with phone number
+            navigation.navigate('OTPVerification', { phoneNumber });
+        }
+    };
 
-    }
+    return (
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle="light-content" backgroundColor="#2C2840" />
 
-    return(
-        <View style={styles.container}>
-            <View style={styles.section}>
-                <View style={styles.logo}>
-                    <Image source={require('../../../assets/phonepe-icon.png')} style={styles.logo} />
-                </View>
-                <Text style={styles.headerText}>Log in to PhonePe</Text>
-                <Text style={styles.subHeaderText}>We will create an account if you don't have one.</Text>
-                <View style={styles.numberSection}>
-                    <Text style={styles.number}>Enter mobile number</Text>
-                    <TextInput style={styles.input} placeholder="Mobile number" keyboardType="number-pad" onChangeText={setMobileNumber} />
-                </View>
-                <MainButton title={"Proceed"} onPress={handleProceed} disabled={isProcessed} />
+            <View style={styles.header}>
+                <TouchableOpacity style={styles.helpButton}>
+                    <Text style={styles.helpButtonText}>?</Text>
+                </TouchableOpacity>
             </View>
-        </View>
-    )
-}
+
+            {/* Logo */}
+            <View style={styles.logoContainer}>
+                    <Image style={styles.logo} source={require('../../../assets/phonepe-icon.png')}/>
+            </View>
+
+            {/* Title and Subtitle */}
+            <Text style={styles.title}>Log in to PhonePe</Text>
+            <Text style={styles.subtitle}>
+                We will create an account if you don't have one.
+            </Text>
+            <Text style={styles.title2}>Enter mobile number</Text>
+
+            {/* Phone Input Container */}
+            <View style={styles.inputContainer}>
+                <View style={styles.countryCode}>
+                    <Image
+                        source={require('../../../assets/img.png')}
+                        style={styles.flag}
+                    />
+                    <Text style={styles.countryCodeText}>+91</Text>
+                </View>
+                <TextInput
+                    style={styles.input}
+                    keyboardType="numeric"
+                    maxLength={10}
+                    value={phoneNumber}
+                    onChangeText={setPhoneNumber}
+                    placeholder="Enter mobile number"
+                    placeholderTextColor="#9995AD"
+                />
+            </View>
+
+            <MainButton
+                title={"Proceed"} onPress={handleProceed} disabled={phoneNumber.length !== 10}  />
+
+            {/* Terms and Conditions */}
+            <View style={styles.termsContainer}>
+                <Text style={styles.termsText}>
+                    By proceeding, you are agreeing to PhonePe's{' '}
+                    <Text style={styles.termsLink}>Terms and Conditions</Text> &{' '}
+                    <Text style={styles.termsLink}>Privacy Policy</Text>.
+                </Text>
+            </View>
+        </SafeAreaView>
+    );
+};
+
+export default LoginMain;
