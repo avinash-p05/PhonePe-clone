@@ -1,9 +1,7 @@
 package com.phonepe.v1.PhonePe.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "transactions")
 public class Transaction {
 
@@ -19,7 +18,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "transaction_id", nullable = false, unique = true)
+    @Column(name = "transaction_id", nullable = false, unique = true, length = 24)
     private String transactionId;
 
     @ManyToOne
@@ -66,4 +65,3 @@ public class Transaction {
         PENDING, SUCCESS, FAILED
     }
 }
-
