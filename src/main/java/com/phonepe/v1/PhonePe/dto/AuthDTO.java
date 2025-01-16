@@ -16,6 +16,7 @@ public class AuthDTO {
         private String email;
         private String password;
         private String name;
+        private String deviceFingerPrint;
     }
 
     @Data
@@ -25,6 +26,7 @@ public class AuthDTO {
     public static class LoginRequest {
         private String phoneNumber;
         private String password;
+        private String deviceFingerPrint;
     }
 
     @Data
@@ -36,5 +38,26 @@ public class AuthDTO {
         private String phoneNumber;
         private String name;
         private String email;
+        private String deviceFingerPrint;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ForgotPasswordResponse {
+        private String OTP;
+        private String Validity;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ResetPasswordRequest {
+        private String phoneNumber;
+        private String email;
+        private String otp;
+        private String newPassword;
     }
 }

@@ -32,6 +32,7 @@ public class UserService {
         user.setWalletBalance(BigDecimal.ZERO);
         user.setRole(User.Role.USER);
         user.setStatus(User.Status.ACTIVE);
+        user.setDeviceFingerPrint(request.getDeviceFingerPrint());
 
         return userRepository.save(user);
     }
