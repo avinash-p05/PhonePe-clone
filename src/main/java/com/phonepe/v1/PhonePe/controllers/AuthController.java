@@ -82,4 +82,24 @@ public class AuthController {
             throw e; // Will be handled by GlobalExceptionHandler
         }
     }
+
+    @GetMapping("/refresh-token")
+    public ResponseEntity<ApiResponse<AuthResponse>> refresh(@RequestHeader("Authorization") String token) {
+        try {
+            String phoneNumber = jwtService.extractUsername(token);
+            User user = userService.loadUserByPhoneNumber(phoneNumber);
+            String newToken = jwtService.generateToken(user);
+
+            AuthResponse response = AuthResponse.builder()
+                    .token(newToken)
+                    .phoneNumber(user.getPhoneNumber())
+                    .name(user.getName())
+                    .email(user.getEmail())
+                    .build();
+
+            return ResponseEntity.ok(ApiResponse.success(response, "Token refreshed successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Error refreshing token", "400"));
+        }
+    }
 }

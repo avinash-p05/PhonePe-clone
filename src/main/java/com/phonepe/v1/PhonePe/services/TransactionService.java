@@ -1,5 +1,5 @@
 package com.phonepe.v1.PhonePe.services;
-
+import com.phonepe.v1.PhonePe.dto.TransactionsListResponse;
 import com.phonepe.v1.PhonePe.exceptions.*;
 import com.phonepe.v1.PhonePe.exceptions.Transaction.InsufficientBalanceException;
 import com.phonepe.v1.PhonePe.exceptions.Transaction.InvalidAmountException;
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -73,5 +74,17 @@ public class TransactionService {
             transactionRepository.save(transaction);
             throw new TransactionException("Failed to process transaction: " + e.getMessage());
         }
+    }
+
+    @Transactional
+    public Transaction getTransactionById(Long Id) {
+        return transactionRepository.findById(Id)
+                .orElseThrow(() -> new TransactionException("Transaction not found"));
+    }
+
+    @Transactional
+    public List<TransactionsListResponse> getTransactionsByUser(User user) {
+        Long userId = user.getId();
+        return transactionRepository.findTransactionsByUserId(userId);
     }
 }

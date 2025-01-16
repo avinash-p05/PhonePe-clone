@@ -43,6 +43,7 @@ public class TransDTO {
         private Transaction.TransactionType transactionType;
         private Transaction.TransactionStatus status;
         private LocalDateTime createdAt;
+
     }
 
 }
