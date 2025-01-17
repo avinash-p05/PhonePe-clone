@@ -3,11 +3,12 @@ package com.phonepe.v1.PhonePe.controllers;
 import com.phonepe.v1.PhonePe.dto.ApiResponse;
 import com.phonepe.v1.PhonePe.dto.TransDTO;
 import com.phonepe.v1.PhonePe.dto.TransactionsListResponse;
-import com.phonepe.v1.PhonePe.exceptions.Transaction.RecipientNotFoundException;
 import com.phonepe.v1.PhonePe.exceptions.Transaction.TransactionException;
+import com.phonepe.v1.PhonePe.models.PaymentNotification;
 import com.phonepe.v1.PhonePe.models.Transaction;
 import com.phonepe.v1.PhonePe.models.User;
 import com.phonepe.v1.PhonePe.repositories.UserRepository;
+import com.phonepe.v1.PhonePe.services.NotificationService;
 import com.phonepe.v1.PhonePe.services.TransactionService;
 import com.phonepe.v1.PhonePe.services.UserService;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -28,10 +29,13 @@ public class TransController {
 
     TransactionService transactionService;
 
-    TransController(TransactionService transactionService, UserRepository UserRepository, UserService userService) {
+    NotificationService notificationService;
+
+    TransController(TransactionService transactionService, UserRepository UserRepository, UserService userService, NotificationService notificationService) {
         this.userService = userService;
         this.UserRepository = UserRepository;
-        this.transactionService = transactionService;;
+        this.transactionService = transactionService;
+        this.notificationService = notificationService;
     }
 
     @PostMapping("/initiate")
@@ -54,6 +58,21 @@ public class TransController {
                     .status(transaction.getStatus())
                     .createdAt(transaction.getCreatedAt())
                     .build();
+
+           PaymentNotification receiverNotification = new PaymentNotification(
+                transaction.getReceiver().getId().toString(), transaction.getTransactionId(),
+                "You have received a payment of " + transaction.getAmount(), transaction.getAmount(), Transaction.TransactionType.RECEIVE_MONEY, LocalDateTime.now()
+           );
+
+            notificationService.sendPaymentNotification(receiverNotification);
+
+            PaymentNotification senderNotification = new PaymentNotification(
+                    transaction.getSender().getId().toString(), transaction.getTransactionId(),
+                    "You have made a payment of " + transaction.getAmount(), transaction.getAmount(), Transaction.TransactionType.SEND_MONEY, LocalDateTime.now()
+            );
+
+            notificationService.sendPaymentNotification(senderNotification);
+
 
             return ResponseEntity.ok(ApiResponse.success(transactionResponse, "Amount sent successfully"));
 
