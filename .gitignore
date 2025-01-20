@@ -6,7 +6,8 @@ target/
 /serviceAccountKey.json
 
 ### STS ###
-.env
+src/main/resources/.env
+kafkacmds
 .apt_generated
 .classpath
 .factorypath

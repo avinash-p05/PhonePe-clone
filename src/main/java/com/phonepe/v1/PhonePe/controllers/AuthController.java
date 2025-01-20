@@ -8,6 +8,7 @@ import com.phonepe.v1.PhonePe.dto.AuthDTO.LoginRequest;
 import com.phonepe.v1.PhonePe.dto.AuthDTO.AuthResponse;
 import com.phonepe.v1.PhonePe.models.User;
 import com.phonepe.v1.PhonePe.repositories.UserRepository;
+import com.phonepe.v1.PhonePe.services.OTPService;
 import com.phonepe.v1.PhonePe.services.UserService;
 import com.phonepe.v1.PhonePe.utils.GenerateOTP;
 import lombok.Data;
@@ -31,12 +32,14 @@ public class AuthController {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
+    private final OTPService otpService;
 
-    AuthController(UserService userService, JwtService jwtService, AuthenticationManager authenticationManager, UserRepository userRepository) {
+    AuthController(UserService userService, JwtService jwtService, AuthenticationManager authenticationManager, UserRepository userRepository,OTPService otpService) {
         this.userService = userService;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
+        this.otpService = otpService;
     }
 
     @PostMapping("/register")
@@ -151,6 +154,8 @@ public class AuthController {
             user.setOtp(otp);
             user.setOtpValidity(otpValidity);
 
+            String otpResponse = otpService.sendOtp(phoneNumber, Integer.parseInt(otp));
+
             // Save user with updated OTP details
             userRepository.save(user);
 
@@ -160,7 +165,9 @@ public class AuthController {
                     .Validity("5 minutes")
                     .build();
 
-            return ResponseEntity.ok(ApiResponse.success(response, "OTP sent successfully"));
+
+
+            return ResponseEntity.ok(ApiResponse.success(response, otpResponse));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(ApiResponse.error("Error sending OTP: " + e.getMessage(), "500"));
